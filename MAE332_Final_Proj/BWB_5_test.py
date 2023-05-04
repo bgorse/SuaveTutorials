@@ -353,7 +353,7 @@ def full_setup():
     configurations, as well as the mission and analyses to go with those configurations."""
 
     # Collect baseline vehicle data and changes when using different configuration settings
-    vehicle  = vehicle_setup()
+    vehicle  = vehicle_setup(write_output=False)
     configs  = configs_setup(vehicle)
 
     # Get the analyses to be used when different configurations are evaluated

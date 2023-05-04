@@ -106,7 +106,7 @@ def base_analysis(vehicle):
     # ------------------------------------------------------------------
     #  Aerodynamics Analysis
     aerodynamics = SUAVE.Analyses.Aerodynamics.AVL()
-    aerodynamics.process.compute.lift.inviscid.settings.filenames.avl_bin_name = 'CHANGE ME TO YOUR DIRECTORY'
+    aerodynamics.process.compute.lift.inviscid.settings.filenames.avl_bin_name = 'C:\\Users\\bengo\\Documents\\Github\\SuaveTutorials'
     #aerodynamics.settings.number_spanwise_vortices  = 5
     #aerodynamics.settings.number_chordwise_vortices = 3
     aerodynamics.geometry = vehicle

@@ -1,0 +1,14 @@
+base
+
+#Mach
+ 0.0
+ 
+#Iysym   IZsym   Zsym
+  0      0     0.0
+  
+#Sref    Cref    Bref 	<meters>
+4010.676743089854      36.4852370380546     150.8719477648953
+
+#Xref    Yref    Zref   <meters>
+25.0      0.0     0.0
+

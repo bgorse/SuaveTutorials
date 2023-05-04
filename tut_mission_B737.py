@@ -36,6 +36,9 @@ from SUAVE.Methods.Propulsion.turbofan_sizing import turbofan_sizing
 # Rather than conventional sizing, this script builds the turbofan energy network. This process is
 # covered in more detail in a separate tutorial. It does not size the turbofan geometry.
 
+from SUAVE.Input_Output.OpenVSP import write
+from SUAVE.Input_Output.OpenVSP.vsp_read import vsp_read
+
 from copy import deepcopy
 
 # ----------------------------------------------------------------------
@@ -66,6 +69,7 @@ def main():
 
     # Plot all mission results, including items such as altitude profile and L/D
     plot_mission(results)
+
 
     return
 
@@ -605,6 +609,8 @@ def vehicle_setup():
     # ------------------------------------------------------------------
     #   Vehicle Definition Complete
     # ------------------------------------------------------------------
+
+    write(vehicle, 'SUAVE_B737')
 
     return vehicle
 

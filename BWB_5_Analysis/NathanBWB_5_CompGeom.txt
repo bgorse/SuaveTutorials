@@ -1,0 +1,184 @@
+...Comp Geom...
+25 Num Comps
+83 Total Num Meshes
+48900 Total Num Tris
+
+Theo_Area   Wet_Area   Theo_Vol    Wet_Vol  Name
+46420.982  46239.192  224340.005  224137.255  WingGeom       
+46421.412  46239.621  224340.537  224137.795  WingGeom       
+12885.844      0.000  26569.150      0.000  ConformalGeom  
+12885.844      0.000  26569.150      0.000  ConformalGeom  
+ 5167.197   4381.284   6870.657   5843.272  WingGeom       
+ 5167.197   4381.284   6870.657   5843.272  WingGeom       
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+  460.529    460.529    598.110    598.110  FuselageGeom   
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+  460.529    460.529    598.110    598.110  FuselageGeom   
+   19.997      0.000      2.715      0.000  HumanGeom      
+   20.078      0.000      2.862      0.000  HumanGeom      
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      1.104   1520.000      1.976  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      1.104   1520.000      1.976  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+  852.000      0.000   1520.000      0.000  BoxGroup       
+-------------------------------------------------
+196249.751  118236.790  650468.324  505188.135  Totals         
+
+Tag_Theo_Area   Tag_Wet_Area    Tag_Name
+    39417.034      39235.244    WingGeom_Surf0 
+    39417.122      39235.331    WingGeom_Surf1 
+    12885.844          0.000    ConformalGeom_Surf0
+    12885.844          0.000    ConformalGeom_Surf1
+     5167.197       4381.284    WingGeom_Surf0 
+     5167.197       4381.284    WingGeom_Surf1 
+     1148.010       1148.010    FuselageGeom_Surf0
+     1148.010       1148.010    FuselageGeom_Surf0
+     1148.010       1148.010    FuselageGeom_Surf0
+     1148.010       1148.010    FuselageGeom_Surf0
+     1148.010       1148.010    FuselageGeom_Surf0
+     1148.010       1148.010    FuselageGeom_Surf0
+     1148.010       1148.010    FuselageGeom_Surf0
+      460.529        460.529    FuselageGeom_Surf0
+     1148.010       1148.010    FuselageGeom_Surf0
+     1148.010       1148.010    FuselageGeom_Surf0
+     1148.010       1148.010    FuselageGeom_Surf0
+     1148.010       1148.010    FuselageGeom_Surf0
+     1148.010       1148.010    FuselageGeom_Surf0
+     1148.010       1148.010    FuselageGeom_Surf0
+     1148.010       1148.010    FuselageGeom_Surf0
+      460.529        460.529    FuselageGeom_Surf0
+       19.997          0.000    HumanGeom_Surf0
+       20.078          0.000    HumanGeom_Surf0
+      852.000          0.000    BoxGroup_Surf0 
+      852.000          0.000    BoxGroup_Surf1 
+      852.000          0.000    BoxGroup_Surf2 
+      852.000          0.000    BoxGroup_Surf3 
+      852.000          0.000    BoxGroup_Surf4 
+      852.000          0.000    BoxGroup_Surf5 
+      852.000          0.000    BoxGroup_Surf6 
+      852.000          0.000    BoxGroup_Surf7 
+      852.000          0.000    BoxGroup_Surf8 
+      852.000          0.000    BoxGroup_Surf9 
+      852.000          0.000    BoxGroup_Surf10
+      852.000          0.000    BoxGroup_Surf11
+      852.000          0.000    BoxGroup_Surf12
+      852.000          0.000    BoxGroup_Surf13
+      852.000          0.000    BoxGroup_Surf14
+      852.000          0.000    BoxGroup_Surf15
+      852.000          0.000    BoxGroup_Surf16
+      852.000          0.000    BoxGroup_Surf17
+      852.000          0.000    BoxGroup_Surf18
+      852.000          0.000    BoxGroup_Surf19
+      852.000          0.000    BoxGroup_Surf20
+      852.000          0.000    BoxGroup_Surf0 
+      852.000          0.000    BoxGroup_Surf1 
+      852.000          0.000    BoxGroup_Surf2 
+      852.000          0.000    BoxGroup_Surf3 
+      852.000          0.000    BoxGroup_Surf4 
+      852.000          0.000    BoxGroup_Surf5 
+      852.000          0.000    BoxGroup_Surf6 
+      852.000          0.000    BoxGroup_Surf7 
+      852.000          0.000    BoxGroup_Surf8 
+      852.000          0.000    BoxGroup_Surf9 
+      852.000          0.000    BoxGroup_Surf10
+      852.000          0.000    BoxGroup_Surf11
+      852.000          0.000    BoxGroup_Surf12
+      852.000          0.000    BoxGroup_Surf13
+      852.000          0.000    BoxGroup_Surf14
+      852.000          0.000    BoxGroup_Surf15
+      852.000          0.000    BoxGroup_Surf16
+      852.000          0.000    BoxGroup_Surf17
+      852.000          0.000    BoxGroup_Surf18
+      852.000          0.000    BoxGroup_Surf19
+      852.000          0.000    BoxGroup_Surf0 
+      852.000          0.000    BoxGroup_Surf1 
+      852.000          0.000    BoxGroup_Surf2 
+      852.000          0.000    BoxGroup_Surf3 
+      852.000          1.104    BoxGroup_Surf4 
+      852.000          0.000    BoxGroup_Surf5 
+      852.000          0.000    BoxGroup_Surf6 
+      852.000          0.000    BoxGroup_Surf7 
+      852.000          0.000    BoxGroup_Surf8 
+      852.000          0.000    BoxGroup_Surf9 
+      852.000          0.000    BoxGroup_Surf10
+      852.000          0.000    BoxGroup_Surf11
+      852.000          1.104    BoxGroup_Surf12
+      852.000          0.000    BoxGroup_Surf13
+      852.000          0.000    BoxGroup_Surf14
+      852.000          0.000    BoxGroup_Surf15
+      852.000          0.000    BoxGroup_Surf0 
+      852.000          0.000    BoxGroup_Surf1 
+     1293.168       1293.168    WingGeom_Surf0,SS_CONT_0
+     3101.847       3101.847    WingGeom_Surf0,SS_CONT_1
+     1550.302       1550.302    WingGeom_Surf0,SS_CONT_2
+     1058.631       1058.631    WingGeom_Surf0,SS_CONT_3
+     1293.168       1293.168    WingGeom_Surf1,SS_CONT_0
+     3102.189       3102.189    WingGeom_Surf1,SS_CONT_1
+     1550.302       1550.302    WingGeom_Surf1,SS_CONT_2
+     1058.631       1058.631    WingGeom_Surf1,SS_CONT_3

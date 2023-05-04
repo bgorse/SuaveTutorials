@@ -1,0 +1,37 @@
+Sref = 43170.565173 
+Cref = 153.005200 
+Bref = 494.986705 
+X_cg = 109.881407 
+Y_cg = 0.000000 
+Z_cg = 4.480195 
+Mach = 0.700000 
+AoA = 0.000000, 1.000000, 2.000000, 3.000000, 4.000000, 5.000000, 6.000000, 7.000000, 8.000000, 9.000000, 10.000000, 11.000000, 12.000000, 13.000000, 14.000000, 15.000000 
+Beta = 0.000000 
+Vinf = 100.000000 
+Rho = 0.002377 
+ReCref = 1800000000.000000 
+ClMax = -999.000000 
+MaxTurningAngle = -1.000000 
+Symmetry = Y 
+FarDist = -1.000000 
+NumWakeNodes = 64 
+WakeIters = 5 
+NumberOfControlGroups = 1 
+Unnamed_Control_Group
+WingGeom_Surf0_SS_CONT_0,WingGeom_Surf1_SS_CONT_0,WingGeom_Surf0_SS_CONT_1,WingGeom_Surf1_SS_CONT_1,WingGeom_Surf0_SS_CONT_2,WingGeom_Surf1_SS_CONT_2,WingGeom_Surf0_SS_CONT_3,WingGeom_Surf1_SS_CONT_3
+3, 3, 3, 3, 3, 3, 3, 3
+0
+Preconditioner = Matrix 
+Karman-Tsien Correction = N 
+Stability Type = 0 
+NumberOfQuadTrees = 10 
+1 2 0.000000 
+2 2 0.000000 
+3 2 0.000000 
+4 2 0.000000 
+5 2 0.000000 
+6 2 0.000000 
+7 2 0.000000 
+8 2 0.000000 
+9 2 0.000000 
+10 2 0.000000 

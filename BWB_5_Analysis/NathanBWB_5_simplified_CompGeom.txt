@@ -1,0 +1,58 @@
+...Comp Geom...
+18 Num Comps
+20 Total Num Meshes
+7408 Total Num Tris
+
+Theo_Area   Wet_Area   Theo_Vol    Wet_Vol  Name
+46420.983  46239.903  224340.004  224139.181  WingGeom       
+46421.413  46240.333  224340.537  224139.720  WingGeom       
+ 5167.197   4381.284   6870.657   5843.233  WingGeom       
+ 5167.197   4381.284   6870.657   5843.233  WingGeom       
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+  460.529    460.529    598.110    598.110  FuselageGeom   
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+ 1148.010   1148.010   3144.741   3144.741  FuselageGeom   
+  460.529    460.529    598.110    598.110  FuselageGeom   
+-------------------------------------------------
+120169.990  118236.004  507644.445  505187.956  Totals         
+
+Tag_Theo_Area   Tag_Wet_Area    Tag_Name
+    39720.455      39539.375    WingGeom_Surf0 
+    39720.543      39539.462    WingGeom_Surf1 
+     5167.197       4381.284    WingGeom_Surf0 
+     5167.197       4381.284    WingGeom_Surf1 
+     1148.010       1148.010    FuselageGeom_Surf0
+     1148.010       1148.010    FuselageGeom_Surf0
+     1148.010       1148.010    FuselageGeom_Surf0
+     1148.010       1148.010    FuselageGeom_Surf0
+     1148.010       1148.010    FuselageGeom_Surf0
+     1148.010       1148.010    FuselageGeom_Surf0
+     1148.010       1148.010    FuselageGeom_Surf0
+      460.529        460.529    FuselageGeom_Surf0
+     1148.010       1148.010    FuselageGeom_Surf0
+     1148.010       1148.010    FuselageGeom_Surf0
+     1148.010       1148.010    FuselageGeom_Surf0
+     1148.010       1148.010    FuselageGeom_Surf0
+     1148.010       1148.010    FuselageGeom_Surf0
+     1148.010       1148.010    FuselageGeom_Surf0
+     1148.010       1148.010    FuselageGeom_Surf0
+      460.529        460.529    FuselageGeom_Surf0
+     1293.168       1293.168    WingGeom_Surf0,SS_CONT_0
+     3101.847       3101.847    WingGeom_Surf0,SS_CONT_1
+     1550.302       1550.302    WingGeom_Surf0,SS_CONT_2
+      755.211        755.211    WingGeom_Surf0,SS_CONT_3
+     1293.168       1293.168    WingGeom_Surf1,SS_CONT_0
+     3102.189       3102.189    WingGeom_Surf1,SS_CONT_1
+     1550.302       1550.302    WingGeom_Surf1,SS_CONT_2
+      755.211        755.211    WingGeom_Surf1,SS_CONT_3

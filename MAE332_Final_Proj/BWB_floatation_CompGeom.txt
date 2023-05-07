@@ -1,0 +1,14 @@
+...Comp Geom...
+1 Num Comps
+2 Total Num Meshes
+2176 Total Num Tris
+
+Theo_Area   Wet_Area   Theo_Vol    Wet_Vol  Name
+15944.375  15944.375  90116.229  90116.229  floaty3        
+15944.375  15944.375  90116.229  90116.229  floaty3        
+-------------------------------------------------
+31888.750  31888.750  180232.458  180232.458  Totals         
+
+Tag_Theo_Area   Tag_Wet_Area    Tag_Name
+    15944.375      15944.375    floaty3_Surf0  
+    15944.375      15944.375    floaty3_Surf1  

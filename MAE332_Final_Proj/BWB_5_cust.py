@@ -26,7 +26,16 @@ from SUAVE.Plots.Performance.Mission_Plots import *
 
 from copy import deepcopy
 
-ft_2_m = 0.3048
+ft_2_m = 0.3048 # Conversion Factor
+
+# Engine Parameters
+engine_OD = 13.0 * ft_2_m
+engine_ID = 13.0 * 0.9 * ft_2_m
+engine_l =  24.0 * ft_2_m
+count_per_row = 3
+count_per_col = 2
+horizontal_spacing = 17.0
+vert_spacing = 14.0
 
 # ----------------------------------------------------------------------
 #   Main
@@ -39,15 +48,18 @@ def main():
     ### ******Stuff from full_setup() START *********
 
     # Collect baseline vehicle data and changes when using different configuration settings
-    vehicle  = vehicle_setup(write_output=False)
+    vehicle  = vehicle_setup(write_output=True)
     configs  = configs_setup(vehicle)
 
     # Get the analyses to be used when different configurations are evaluated
     configs_analyses = analyses_setup(configs)
 
-    # Create the mission that will be flown
-    mission  = cruise_mission_setup(configs_analyses)              # Can change between cruise and climb missions
-    # mission  = climb_mission_setup(configs_analyses)
+    # Create the mission that will be flown           
+    M_at_alt = 0.7
+    max_alt =  8.0 # in km
+    # Can change between cruise and climb missions by commenting/uncommenting the next lines    
+    # mission  = cruise_mission_setup(configs_analyses)
+    mission  = climb_mission_setup(configs_analyses, M_at_alt=M_at_alt, max_alt=max_alt)
     missions_analyses = missions_setup(mission)
 
     # Add the analyses to the proper containers
@@ -89,10 +101,10 @@ def vehicle_setup(write_output: bool=False):
     # ------------------------------------------------------------------    
 
     # mass properties
-    vehicle.mass_properties.max_takeoff                 = 11200000.0 * Units.kilogram                  # NOT SET
-    vehicle.mass_properties.takeoff                     = 11200000.0 * Units.kilogram                  # Same as TO: NOT SET
+    vehicle.mass_properties.max_takeoff                 = 5080235.0 * Units.kilogram                  # NOT SET
+    vehicle.mass_properties.takeoff                     = 5080235.0 * Units.kilogram                  # Same as TO: NOT SET
     # Assumes a jet fuel density of 800 kg/m^3 with our fuel vol of 52,000ft^3 ~= 1472.476
-    vehicle.mass_properties.max_zero_fuel               = vehicle.mass_properties.max_takeoff - (1177981.0 * Units.kilogram) 
+    vehicle.mass_properties.max_zero_fuel               = vehicle.mass_properties.max_takeoff - (1524000.0 * Units.kilogram) 
     vehicle.mass_properties.operating_empty             = vehicle.mass_properties.max_zero_fuel        # NOT SET: Max op empty should be same as ~max no fuel
     vehicle.mass_properties.cargo                       = 1524000.0  * Units.kilogram                  # Set from slides 
     vehicle.mass_properties.center_of_gravity           = np.array([[33.528, 0.0, 0.0] * Units.meter])   # FROM SLIDES
@@ -151,71 +163,83 @@ def vehicle_setup(write_output: bool=False):
     #   Main Wing Segments
     # ------------------------------------------------------------------
 
-    # # First segment
-    # segment                               = SUAVE.Components.Wings.Segment()
-    # segment.tag                           = 'Root Segment'
-    # segment.percent_span_location         = 0.0                            # Accurate
-    # segment.twist                         = 0. * Units.deg                 # Accurate
-    # segment.root_chord_percent            = 1.                             # Accurate
-    # segment.thickness_to_chord            = 0.12                           # Accurate
-    # segment.dihedral_outboard             = 0.0 * Units.degrees            # Accurate
-    # segment.sweeps.quarter_chord          = 37.6 * Units.degrees                           # Accurate
-    # segment.areas.reference               = 360.62 * Units['meters**2']    # Accurate
-    # segment.chords.mean_aerodynamic       = 61.62 * Units.meter            # Accurate
-    # wing.append_segment(segment)
+    # First segment
+    segment                               = SUAVE.Components.Wings.Segment()
+    segment.tag                           = 'Root Segment'
+    segment.percent_span_location         = 0.0                            # Accurate
+    segment.twist                         = 0. * Units.deg                 # Accurate
+    segment.root_chord_percent            = 1.                             # Accurate
+    segment.thickness_to_chord            = 0.12                           # Accurate
+    segment.dihedral_outboard             = 0.0 * Units.degrees            # Accurate
+    segment.sweeps.quarter_chord          = 37.6 * Units.degrees                           # Accurate
+    segment.areas.reference               = 360.62 * Units['meters**2']    # Accurate
+    segment.chords.mean_aerodynamic       = 61.62 * Units.meter            # Accurate
+    wing.append_segment(segment)
 
-    # # Second segment
-    # segment                               = SUAVE.Components.Wings.Segment()
-    # segment.tag                           = '2nd Segment'
-    # segment.percent_span_location         = 0.0774                         # Accurate
-    # segment.twist                         = 0. * Units.deg                 # Accurate
-    # segment.root_chord_percent            = 0.913                          # Accurate
-    # segment.thickness_to_chord            = 0.12                           # Accurate
-    # segment.dihedral_outboard             = 0.0 * Units.degrees            # Accurate
-    # segment.sweeps.quarter_chord          = 34.7262 * Units.degrees        # Accurate
-    # segment.areas.reference               = 193.96 * Units['meters**2']    # Accurate
-    # segment.chords.mean_aerodynamic       = 56.722 * Units.meter           # Accurate 
-    # wing.append_segment(segment)
+    # Second segment
+    segment                               = SUAVE.Components.Wings.Segment()
+    segment.tag                           = '2nd Segment'
+    segment.percent_span_location         = 0.0774                         # Accurate
+    segment.twist                         = 0. * Units.deg                 # Accurate
+    segment.root_chord_percent            = 0.913                          # Accurate
+    segment.thickness_to_chord            = 0.12                           # Accurate
+    segment.dihedral_outboard             = 0.0 * Units.degrees            # Accurate
+    segment.sweeps.quarter_chord          = 34.7262 * Units.degrees        # Accurate
+    segment.areas.reference               = 193.96 * Units['meters**2']    # Accurate
+    segment.chords.mean_aerodynamic       = 56.722 * Units.meter           # Accurate 
+    wing.append_segment(segment)
 
-    # # Third segment
-    # segment                               = SUAVE.Components.Wings.Segment()
-    # segment.tag                           = '3rd Segment'
-    # segment.percent_span_location         = 0.1226                         # Accurate
-    # segment.twist                         = 0. * Units.deg                 # Accurate
-    # segment.root_chord_percent            = 0.847826                       # Accurate
-    # segment.thickness_to_chord            = 0.12                           # Accurate
-    # segment.dihedral_outboard             = 0.0 * Units.degrees            # Accurate
-    # segment.sweeps.quarter_chord          = 29.7695 * Units.degrees        # Accurate
-    # segment.areas.reference               = 151.35 * Units['meters**2']    # Accurate
-    # segment.chords.mean_aerodynamic       = 52.137 * Units.meter           # Accurate
-    # wing.append_segment(segment)
+    # Third segment
+    segment                               = SUAVE.Components.Wings.Segment()
+    segment.tag                           = '3rd Segment'
+    segment.percent_span_location         = 0.1226                         # Accurate
+    segment.twist                         = 0. * Units.deg                 # Accurate
+    segment.root_chord_percent            = 0.847826                       # Accurate
+    segment.thickness_to_chord            = 0.12                           # Accurate
+    segment.dihedral_outboard             = 0.0 * Units.degrees            # Accurate
+    segment.sweeps.quarter_chord          = 29.7695 * Units.degrees        # Accurate
+    segment.areas.reference               = 151.35 * Units['meters**2']    # Accurate
+    segment.chords.mean_aerodynamic       = 52.137 * Units.meter           # Accurate
+    wing.append_segment(segment)
 
-    # # Fourth segment
-    # segment                               = SUAVE.Components.Wings.Segment()
-    # segment.tag                           = '4th Segment'
-    # segment.percent_span_location         = 0.1610                         # Accurate
-    # segment.twist                         = 0. * Units.deg                 # Accurate
-    # segment.root_chord_percent            = 0.77072                        # Accurate 
-    # segment.thickness_to_chord            = 0.12                           # Accurate
-    # segment.dihedral_outboard             = 0.0 * Units.degrees            # Accurate
-    # segment.sweeps.quarter_chord          = 5.4388 * Units.degrees         # Accurate 
-    # segment.areas.reference               = 229.11 * Units['meters**2']    # Accurate
-    # segment.chords.mean_aerodynamic       = 39.030 * Units.meter           # Accurate
-    # wing.append_segment(segment)
+    # Fourth segment
+    segment                               = SUAVE.Components.Wings.Segment()
+    segment.tag                           = '4th Segment'
+    segment.percent_span_location         = 0.1610                         # Accurate
+    segment.twist                         = 0. * Units.deg                 # Accurate
+    segment.root_chord_percent            = 0.77072                        # Accurate 
+    segment.thickness_to_chord            = 0.12                           # Accurate
+    segment.dihedral_outboard             = 0.0 * Units.degrees            # Accurate
+    segment.sweeps.quarter_chord          = 5.4388 * Units.degrees         # Accurate 
+    segment.areas.reference               = 229.11 * Units['meters**2']    # Accurate
+    segment.chords.mean_aerodynamic       = 39.030 * Units.meter           # Accurate
+    wing.append_segment(segment)
 
-    # # Tip segment
-    # segment                               = SUAVE.Components.Wings.Segment()
-    # segment.tag                           = 'Tip Segment'
-    # segment.percent_span_location         = 0.2387                         # Accurate 
-    # segment.twist                         = 0. * Units.deg                 # Accurate
-    # segment.root_chord_percent            = 0.440937                       # Accurate
-    # segment.thickness_to_chord            = 0.12                           # Accurate
-    # segment.dihedral_outboard             = 0.0 * Units.degrees            # Accurate
-    # segment.sweeps.quarter_chord          = 26.1485 * Units.degrees        # Accurate
-    # segment.areas.reference               = 1062.37 * Units['meters**2']   # Accurate
-    # segment.chords.mean_aerodynamic       = 18.4647 * Units.meter          # Accurate
-    # wing.append_segment(segment)
+    # Last real segment
+    segment                               = SUAVE.Components.Wings.Segment()
+    segment.tag                           = '5th Segment'
+    segment.percent_span_location         = 0.2387                         # Accurate 
+    segment.twist                         = 0. * Units.deg                 # Accurate
+    segment.root_chord_percent            = 0.440937                       # Accurate
+    segment.thickness_to_chord            = 0.12                           # Accurate
+    segment.dihedral_outboard             = 0.0 * Units.degrees            # Accurate
+    segment.sweeps.quarter_chord          = 26.1485 * Units.degrees        # Accurate
+    segment.areas.reference               = 1062.37 * Units['meters**2']   # Accurate
+    segment.chords.mean_aerodynamic       = 18.4647 * Units.meter          # Accurate
+    wing.append_segment(segment)
+
+    # Required to add the Tip as its own end segment
+    segment                               = SUAVE.Components.Wings.Segment()
+    segment.tag                           = 'Tip'
+    segment.percent_span_location         = 1.
+    segment.twist                         = 1. * Units.degrees
+    segment.root_chord_percent            = 0.1322611
+    segment.thickness_to_chord            = 0.12
+    segment.dihedral_outboard             = 0.
+    segment.sweeps.quarter_chord          = 0.
+    wing.append_segment(segment)
     
+    wing = segment_properties(wing)
 
     # ------------------------------------------------------------------
     #   Main Wing Control Surfaces
@@ -223,23 +247,6 @@ def vehicle_setup(write_output: bool=False):
 
     # ## HIGH LIFT CONTROL SURFACES
     wing.high_lift               = False # change to true if adding the flaps/slats
-    # flap                       = SUAVE.Components.Wings.Control_Surfaces.Flap() 
-    # flap.tag                   = 'flap' 
-    # flap.span_fraction_start   = 0.20 
-    # flap.span_fraction_end     = 0.70   
-    # flap.deflection            = 0.0 * Units.degrees
-    # # Flap configuration types are used in computing maximum CL and noise
-    # flap.configuration_type    = 'double_slotted'
-    # flap.chord_fraction        = 0.30   
-    # wing.append_control_surface(flap)   
-        
-    # slat                       = SUAVE.Components.Wings.Control_Surfaces.Slat() 
-    # slat.tag                   = 'slat' 
-    # slat.span_fraction_start   = 0.324 
-    # slat.span_fraction_end     = 0.963     
-    # slat.deflection            = 0.0 * Units.degrees
-    # slat.chord_fraction        = 0.1  	 
-    # wing.append_control_surface(slat) 
 
     ## CAUSES ERROR WHEN RUNNING VORTEX LATTICE METHOD
     aileron1                       = SUAVE.Components.Wings.Control_Surfaces.Aileron() 
@@ -251,31 +258,31 @@ def vehicle_setup(write_output: bool=False):
     wing.append_control_surface(aileron1)
 
     # ## CAUSES IT TO BREAK ON WRITE FOR UNKNOWN REASON
-    # aileron2                       = SUAVE.Components.Wings.Control_Surfaces.Aileron() 
-    # aileron2.tag                   = 'aileron 2'  
-    # aileron2.span_fraction_start   = 0.67 
-    # aileron2.span_fraction_end     = 0.74 
-    # aileron2.deflection            = 0.0 * Units.degrees
-    # aileron2.chord_fraction        = 0.25    
-    # wing.append_control_surface(aileron2)
+    aileron2                       = SUAVE.Components.Wings.Control_Surfaces.Aileron() 
+    aileron2.tag                   = 'aileron 2'  
+    aileron2.span_fraction_start   = 0.67 
+    aileron2.span_fraction_end     = 0.74 
+    aileron2.deflection            = 0.0 * Units.degrees
+    aileron2.chord_fraction        = 0.25    
+    wing.append_control_surface(aileron2)
 
     # ## CAUSES IT TO BREAK ON WRITE FOR UNKNOWN REASON
-    # aileron3                       = SUAVE.Components.Wings.Control_Surfaces.Aileron() 
-    # aileron3.tag                   = 'aileron 3' 
-    # aileron3.span_fraction_start   = 0.7425 
-    # aileron3.span_fraction_end     = 0.79 
-    # aileron3.deflection            = 0.0 * Units.degrees
-    # aileron3.chord_fraction        = 0.25    
-    # wing.append_control_surface(aileron3)
+    aileron3                       = SUAVE.Components.Wings.Control_Surfaces.Aileron() 
+    aileron3.tag                   = 'aileron 3' 
+    aileron3.span_fraction_start   = 0.7425 
+    aileron3.span_fraction_end     = 0.79 
+    aileron3.deflection            = 0.0 * Units.degrees
+    aileron3.chord_fraction        = 0.25    
+    wing.append_control_surface(aileron3)
 
     # ## CAUSES IT TO BREAK ON WRITE FOR UNKNOWN REASON
-    # aileron4                       = SUAVE.Components.Wings.Control_Surfaces.Aileron() 
-    # aileron4.tag                   = 'aileron 4' 
-    # aileron4.span_fraction_start   = 0.7925 
-    # aileron4.span_fraction_end     = 0.825 
-    # aileron4.deflection            = 0.0 * Units.degrees
-    # aileron4.chord_fraction        = 0.25    
-    # wing.append_control_surface(aileron4)    
+    aileron4                       = SUAVE.Components.Wings.Control_Surfaces.Aileron() 
+    aileron4.tag                   = 'aileron 4' 
+    aileron4.span_fraction_start   = 0.7925 
+    aileron4.span_fraction_end     = 0.825 
+    aileron4.deflection            = 0.0 * Units.degrees
+    aileron4.chord_fraction        = 0.25    
+    wing.append_control_surface(aileron4)    
 
     # flap                       = SUAVE.Components.Wings.Control_Surfaces.Flap() 
     # flap.tag                   = 'flap' 
@@ -347,14 +354,6 @@ def vehicle_setup(write_output: bool=False):
     #   Nacelles
     # ------------------------------------------------------------------ 
 
-    engine_OD = 13.0 * ft_2_m
-    engine_ID = 13.0 * 0.9 * ft_2_m
-    engine_l =  24.0 * ft_2_m
-    count_per_row = 5
-    count_per_col = 2
-    horizontal_spacing = 17.0
-    vert_spacing = 14.0
-
     for k in range(count_per_col):
         for i in range(count_per_row):
             nacelle                       = SUAVE.Components.Nacelles.Nacelle()
@@ -390,9 +389,22 @@ def vehicle_setup(write_output: bool=False):
     turbofan.tag = 'turbofan'
     
     # High-level setup
-    turbofan.number_of_engines = 2
+    turbofan.number_of_engines = 2 * count_per_col * count_per_row
     turbofan.bypass_ratio      = 5.4
-    turbofan.origin            = [[13.72, 4.86,-1.9],[13.72, -4.86,-1.9]] * Units.meter
+    origin = []
+    for k in range(count_per_col):
+        for i in range(count_per_row):
+            if k % 2 == 1:
+                coords = [50.0* ft_2_m, (60.0 + i*horizontal_spacing  + 0.5*horizontal_spacing)* ft_2_m, (20.0 + k*vert_spacing)* ft_2_m]
+                coords_mir = [coords[0], -1.0*coords[1], coords[2]]
+                origin.append(coords)
+                origin.append(coords_mir)
+            else:
+                coords = [50.0* ft_2_m, (60.0 + i*horizontal_spacing)* ft_2_m, (20.0 + k*vert_spacing)* ft_2_m]
+                coords_mir = [coords[0], -1.0*coords[1], coords[2]]
+                origin.append(coords)
+                origin.append(coords_mir)
+    turbofan.origin            = [origin]
 
     # Establish the correct working fluid
     turbofan.working_fluid = SUAVE.Attributes.Gases.Air()
@@ -552,8 +564,8 @@ def vehicle_setup(write_output: bool=False):
     turbofan.thrust = thrust
     
     # Design sizing conditions are also used to determine mass flow
-    altitude      = 35000.0*Units.ft
-    mach_number   = 0.78     
+    altitude      = 100.0*Units.ft
+    mach_number   = 0.7     
 
     # Determine turbofan behavior at the design condition
     turbofan_sizing(turbofan,mach_number,altitude)   
@@ -600,7 +612,7 @@ def cruise_mission_setup(analyses):
     #   Cruise Segment: Constant Speed, Constant Altitude
     # ------------------------------------------------------------------    
     
-    M_cruise = 0.6
+    M_cruise = 0.7
     T_sl = 293.15 # K
     P_sl = 101325. # Pa
     rho_sl = 1.225 # kg/m^3
@@ -640,7 +652,7 @@ def climb_mission_setup(analyses, max_alt, M_at_alt):
     Temp scales at -6.5K/km
     """
 
-    M_cruise = 0.6
+    M_cruise = 0.7
     T_sl = 293.15 # K
     P_sl = 101325. # Pa
     rho_sl = 1.225 # kg/m^3
@@ -655,7 +667,7 @@ def climb_mission_setup(analyses, max_alt, M_at_alt):
     ceil = math.ceil(max_alt)
     floor = math.floor(max_alt)
     if ceil == floor and ceil > 0 and ceil < 11:
-        P_at_alt = P_at_alts[max_alt]
+        P_at_alt = P_at_alts[ceil]
     elif max_alt > 10:
         if max_alt < 15:
             P_at_alt = ((max_alt - 10)/(15-20))*(P_at_high_alts[2]-P_at_high_alts[1]) + P_at_high_alts[1]
@@ -693,24 +705,19 @@ def climb_mission_setup(analyses, max_alt, M_at_alt):
     base_segment = Segments.Segment()
 
     # ------------------------------------------------------------------    
-    #   Cruise Segment: Constant Speed, Constant Altitude
+    #   1st Cruise Segment: Constant Speed, Constant Altitude
     # ------------------------------------------------------------------    
 
     V_cruise = M_cruise * np.sqrt(gamma_air*R_air*T_sl)
-    segment = Segments.Cruise.Constant_Speed_Constant_Altitude(base_segment)
-    segment.tag = "cruise"
-    segment.analyses.extend( analyses.base)
-    segment.air_speed  = V_cruise
-    segment.distance   = 5500. * Units.nautical_miles
-    segment.altitude   = 30.0 * Units.meters
+    # segment = Segments.Cruise.Constant_Speed_Constant_Altitude(base_segment)
+    # segment.tag = "cruise"
+    # segment.analyses.extend( analyses.base)
+    # segment.air_speed  = V_cruise
+    # segment.distance   = 5500. * Units.nautical_miles
+    # segment.altitude   = 30.0 * Units.meters
 
-    # ## IS the state necessary????
-    # ones_row                                        = segment.state.ones_row   
-    # segment.state.numerics.number_control_points    = 16
-    # segment.state.unknowns.throttle                 = 1.0 * ones_row(1)
-
-    # add to mission
-    mission.append_segment(segment)
+    # # add to mission
+    # mission.append_segment(segment)
 
     # ------------------------------------------------------------------
     #   Climb Segment: Constant Speed, Constant Rate
@@ -725,6 +732,8 @@ def climb_mission_setup(analyses, max_alt, M_at_alt):
     segment.altitude_end   = max_alt   * Units.km
     segment.air_speed      = 0.9*V_cruise * Units['m/s']                 ### We're coming off of flying in cruise
     segment.climb_rate     = 5   * Units['m/s']                          ### ~ 2.5% climb gradient
+    climb_gradient = np.tan(np.arcsin(segment.climb_rate / segment.air_speed))
+    print("climb gradient: " + str(climb_gradient))
 
     # add to misison
     mission.append_segment(segment)
@@ -740,11 +749,6 @@ def climb_mission_setup(analyses, max_alt, M_at_alt):
     segment.air_speed  = V_at_alt
     segment.distance   = 250. * Units.nautical_miles
     segment.altitude   = max_alt * Units.km
-
-    # ## IS the state necessary????
-    # ones_row                                        = segment.state.ones_row   
-    # segment.state.numerics.number_control_points    = 16
-    # segment.state.unknowns.throttle                 = 1.0 * ones_row(1)
 
     # add to mission
     mission.append_segment(segment)
@@ -910,54 +914,54 @@ def configs_setup(vehicle):
     config.tag = 'cruise'
     configs.append(config)
 
-    # ------------------------------------------------------------------
-    #   Takeoff Configuration
-    # ------------------------------------------------------------------
-    config = SUAVE.Components.Configs.Config(base_config)
-    config.tag = 'takeoff'
-    # config.wings['main_wing'].control_surfaces.flap.deflection = 20. * Units.deg
-    # config.wings['main_wing'].control_surfaces.slat.deflection = 25. * Units.deg
-    # A max lift coefficient factor of 1 is the default, but it is highlighted here as an option
-    config.max_lift_coefficient_factor    = 1.
+    # # ------------------------------------------------------------------
+    # #   Takeoff Configuration
+    # # ------------------------------------------------------------------
+    # config = SUAVE.Components.Configs.Config(base_config)
+    # config.tag = 'takeoff'
+    # # config.wings['main_wing'].control_surfaces.flap.deflection = 20. * Units.deg
+    # # config.wings['main_wing'].control_surfaces.slat.deflection = 25. * Units.deg
+    # # A max lift coefficient factor of 1 is the default, but it is highlighted here as an option
+    # config.max_lift_coefficient_factor    = 1.
 
-    configs.append(config)
+    # configs.append(config)
     
-    # ------------------------------------------------------------------
-    #   Cutback Configuration
-    # ------------------------------------------------------------------
-    config = SUAVE.Components.Configs.Config(base_config)
-    config.tag = 'cutback'
-    # config.wings['main_wing'].control_surfaces.flap.deflection = 20. * Units.deg
-    # config.wings['main_wing'].control_surfaces.slat.deflection = 20. * Units.deg
-    config.max_lift_coefficient_factor    = 1.
+    # # ------------------------------------------------------------------
+    # #   Cutback Configuration
+    # # ------------------------------------------------------------------
+    # config = SUAVE.Components.Configs.Config(base_config)
+    # config.tag = 'cutback'
+    # # config.wings['main_wing'].control_surfaces.flap.deflection = 20. * Units.deg
+    # # config.wings['main_wing'].control_surfaces.slat.deflection = 20. * Units.deg
+    # config.max_lift_coefficient_factor    = 1.
 
-    configs.append(config)    
+    # configs.append(config)    
 
-    # ------------------------------------------------------------------
-    #   Landing Configuration
-    # ------------------------------------------------------------------
+    # # ------------------------------------------------------------------
+    # #   Landing Configuration
+    # # ------------------------------------------------------------------
 
-    config = SUAVE.Components.Configs.Config(base_config)
-    config.tag = 'landing'
+    # config = SUAVE.Components.Configs.Config(base_config)
+    # config.tag = 'landing'
 
-    # config.wings['main_wing'].control_surfaces.flap.deflection = 30. * Units.deg
-    # config.wings['main_wing'].control_surfaces.slat.deflection = 25. * Units.deg  
-    config.max_lift_coefficient_factor    = 1. 
+    # # config.wings['main_wing'].control_surfaces.flap.deflection = 30. * Units.deg
+    # # config.wings['main_wing'].control_surfaces.slat.deflection = 25. * Units.deg  
+    # config.max_lift_coefficient_factor    = 1. 
 
-    configs.append(config)
+    # configs.append(config)
 
-    # ------------------------------------------------------------------
-    #   Short Field Takeoff Configuration
-    # ------------------------------------------------------------------ 
+    # # ------------------------------------------------------------------
+    # #   Short Field Takeoff Configuration
+    # # ------------------------------------------------------------------ 
 
-    config = SUAVE.Components.Configs.Config(base_config)
-    config.tag = 'short_field_takeoff'
+    # config = SUAVE.Components.Configs.Config(base_config)
+    # config.tag = 'short_field_takeoff'
     
-    # config.wings['main_wing'].control_surfaces.flap.deflection = 20. * Units.deg
-    # config.wings['main_wing'].control_surfaces.slat.deflection = 20. * Units.deg
-    config.max_lift_coefficient_factor    = 1. 
+    # # config.wings['main_wing'].control_surfaces.flap.deflection = 20. * Units.deg
+    # # config.wings['main_wing'].control_surfaces.slat.deflection = 20. * Units.deg
+    # config.max_lift_coefficient_factor    = 1. 
   
-    configs.append(config)
+    # configs.append(config)
 
     return configs
 
@@ -979,7 +983,14 @@ def base_analysis(vehicle):
     # ------------------------------------------------------------------
     #  Aerodynamics Analysis
     aerodynamics = SUAVE.Analyses.Aerodynamics.Fidelity_Zero()
-    aerodynamics.geometry = vehicle
+    aerodynamics.geometry                            = vehicle
+    # 2 for the number of sets. 
+    # 1.5 as a rough estimate for drag going through engines
+    drag_area = (horizontal_spacing+vert_spacing)*engine_OD*engine_l*2*1.5*ft_2_m*ft_2_m
+    # Adds the area of the floats
+    drag_area = drag_area + 1843.485
+    aerodynamics.settings.drag_coefficient_increment = 1.0*drag_area/vehicle.reference_area
+    print("drag coefficient increment: " + str(aerodynamics.settings.drag_coefficient_increment))
     analyses.append(aerodynamics)
 
     # ------------------------------------------------------------------

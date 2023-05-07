@@ -17,7 +17,7 @@ from SUAVE.Methods.Propulsion import propeller_design
 from SUAVE.Methods.Geometry.Two_Dimensional.Planform import segment_properties
 from SUAVE.Plots.Performance import *
 
-#from SUAVE.Input_Output.OpenVSP import write
+from SUAVE.Input_Output.OpenVSP import write
 
 # ----------------------------------------------------------------------
 #   Main
@@ -28,7 +28,7 @@ def main():
     # Define internal combustion engine from Cessna Regression Aircraft 
     vehicle    = vehicle_setup()
 
-    #write(vehicle,'C172')
+    write(vehicle,'C172')
 
     # Setup analyses and mission
     analyses = base_analysis(vehicle)
@@ -331,17 +331,17 @@ def vehicle_setup():
     prop.design_power            = .64 * 180. * Units.horsepower
     prop.variable_pitch          = False
 
-    prop.airfoil_geometry        =  ['./Airfoils/NACA_4412.txt'] 
-    prop.airfoil_polars          = [['./Airfoils/Polars/NACA_4412_polar_Re_50000.txt' ,
-                                     './Airfoils/Polars/NACA_4412_polar_Re_100000.txt' ,
-                                     './Airfoils/Polars/NACA_4412_polar_Re_200000.txt' ,
-                                     './Airfoils/Polars/NACA_4412_polar_Re_500000.txt' ,
-                                     './Airfoils/Polars/NACA_4412_polar_Re_1000000.txt' ]]
+    # prop.airfoil_geometry        =  ['./Airfoils/NACA_4412.txt'] 
+    # prop.airfoil_polars          = [['./Airfoils/Polars/NACA_4412_polar_Re_50000.txt' ,
+    #                                  './Airfoils/Polars/NACA_4412_polar_Re_100000.txt' ,
+    #                                  './Airfoils/Polars/NACA_4412_polar_Re_200000.txt' ,
+    #                                  './Airfoils/Polars/NACA_4412_polar_Re_500000.txt' ,
+    #                                  './Airfoils/Polars/NACA_4412_polar_Re_1000000.txt' ]]
 
-    prop.airfoil_polar_stations  = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
+    # prop.airfoil_polar_stations  = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
     prop                         = propeller_design(prop)   
     
-    net.propellers.append(prop)
+    # net.propellers.append(prop)
      
     
     # add the network to the vehicle
